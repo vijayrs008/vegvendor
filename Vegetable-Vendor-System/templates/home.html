@@ -1,0 +1,769 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Vegetable Shop</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+    }
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .vegetable {
+      width: 200px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 10px;
+      margin: 10px;
+    }
+    .vegetable img {
+      width: 100%;
+      height: auto;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+    .vegetable h3 {
+      margin: 0;
+      font-size: 18px;
+    }
+    .vegetable p {
+      margin: 0;
+      font-size: 16px;
+    }
+    .add-to-cart {
+      text-align: center;
+      margin-top: 10px;
+    }
+    .add-to-cart button {
+      padding: 8px 16px;
+      font-size: 14px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .add-to-cart button:disabled {
+      background-color: gray;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+{%load static%}
+<body>
+  <h1>Welcome to the {{name}} Vegetable Shop!</h1>
+
+    <div class="container">
+    {% for k,v in result.items  %}
+      {% if k == 'Carrot' %}
+        {% if k in avilable%}
+          <form action="removecart" method="post">
+        {%else%}
+          <form action="cart" method="post">
+        {%endif%}
+              {%csrf_token%}
+        <div class="vegetable">
+          <img src="{% static 'images\carrot.jpg'%}">
+          <select name="veg">
+            <option value="Carrot">Carrot</option>
+          </select>
+          {%for g,b in result1.items %}
+            {% if g == k %}
+              <p>{{b}}per kg</p>
+            {% endif %}
+          {% endfor %}
+          <select id="quantity-tomato" name="value">
+            <option value="1">1kg</option>
+            <option value="2">2kg</option>
+            <option value="3">3kg</option>
+            <option value="4">4kg</option>
+            <option value="5">5kg</option>
+          </select>
+          <div class="add-to-cart">
+            {% if k in avilable%}
+              <input type=submit value="removecart" font-color:"green">
+            {%  elif  v >= 5 %}
+              <input class="add" type=submit value="Add to cart" color="green" >
+            {% else %}
+              <button type=button disabled>Add to cart</button>
+            {% endif %}
+          </div>
+        </div>
+      </form>
+    {%endif%}
+      {% if k == 'Capsicum' %}
+        {% if k in avilable%}
+          <form action="removecart" method="post">
+        {%else%}
+          <form action="cart" method="post">
+        {%endif%}
+              {%csrf_token%}
+        <div class="vegetable">
+          <img src="{% static 'images\capsicum.jpg'%}">
+          <select name="veg">
+            <option value="Capsicum">Capsicum</option>
+          </select>
+          {%for g,b in result1.items %}
+            {% if g == k %}
+              <p>{{b}}per kg</p>
+            {% endif %}
+          {% endfor %}
+          <select id="quantity-tomato" name="value">
+            <option value="1">1kg</option>
+            <option value="2">2kg</option>
+            <option value="3">3kg</option>
+            <option value="4">4kg</option>
+            <option value="5">5kg</option>
+          </select>
+          <div class="add-to-cart">
+            {% if k in avilable%}
+              <input type=submit value="removecart" font-color:"green">
+            {%  elif  v >= 5 %}
+              <input class="add" type=submit value="Add to cart" color="green" >
+            {% else %}
+              <button type=button disabled>Add to cart</button>
+            {% endif %}
+          </div>
+        </div>
+      </form>
+    {% endif %}
+    {% if k == 'Onion' %}
+      {% if k in avilable%}
+        <form action="removecart" method="post">
+      {%else%}
+        <form action="cart" method="post">
+      {%endif%}
+          {%csrf_token%}
+      <div class="vegetable">
+        <img src="{% static 'images\onion.jpg'%}">
+        <select name="veg">
+          <option value="Onion">Onion</option>
+        </select>
+        {%for g,b in result1.items %}
+          {% if g == k %}
+            <p>{{b}}per kg</p>
+          {% endif %}
+        {% endfor %}
+        <select id="quantity-tomato" name="value">
+          <option value="1">1kg</option>
+          <option value="2">2kg</option>
+          <option value="3">3kg</option>
+          <option value="4">4kg</option>
+          <option value="5">5kg</option>
+        </select>
+        <div class="add-to-cart">
+          {% if k in avilable%}
+            <input type=submit value="removecart" font-color:"green">
+          {%  elif  v >= 5 %}
+            <input class="add" type=submit value="Add to cart" color="green" >
+          {% else %}
+            <button type=button disabled>Add to cart</button>
+          {% endif %}
+        </div>
+      </div>
+    </form>
+  {% endif %}
+  {% if k == 'Potato' %}
+      {% if k in avilable%}
+        <form action="removecart" method="post">
+      {%else%}
+        <form action="cart" method="post">
+      {%endif%}
+          {%csrf_token%}
+      <div class="vegetable">
+        <img src="{% static 'images\potato.jpg'%}">
+        <select name="veg">
+          <option value="Potato">Potato</option>
+        </select>
+        {%for g,b in result1.items %}
+          {% if g == k %}
+            <p>{{b}}per kg</p>
+          {% endif %}
+        {% endfor %}
+        <select id="quantity-tomato" name="value">
+          <option value="1">1kg</option>
+          <option value="2">2kg</option>
+          <option value="3">3kg</option>
+          <option value="4">4kg</option>
+          <option value="5">5kg</option>
+        </select>
+        <div class="add-to-cart">
+          {% if k in avilable%}
+            <input type=submit value="removecart" font-color:"green">
+          {%  elif  v >= 5 %}
+            <input class="add" type=submit value="Add to cart" color="green" >
+          {% else %}
+            <button type=button disabled>Add to cart</button>
+          {% endif %}
+        </div>
+      </div>
+    </form>
+  {%endif%}
+  {% if k == 'Garlic' %}
+      {% if k in avilable%}
+        <form action="removecart" method="post">
+      {%else%}
+        <form action="cart" method="post">
+      {%endif%}
+          {%csrf_token%}
+      <div class="vegetable">
+        <img src="{% static 'images\garlic.jpg'%}">
+        <select name="veg">
+          <option value="Garlic">Garlic</option>
+        </select>
+        {%for g,b in result1.items %}
+          {% if g == k %}
+            <p>{{b}}per kg</p>
+          {% endif %}
+        {% endfor %}
+        <select id="quantity-tomato" name="value">
+          <option value="1">1kg</option>
+          <option value="2">2kg</option>
+          <option value="3">3kg</option>
+          <option value="4">4kg</option>
+          <option value="5">5kg</option>
+        </select>
+        <div class="add-to-cart">
+          {% if k in avilable%}
+            <input type=submit value="removecart" font-color:"green">
+          {%  elif  v >= 5 %}
+            <input class="add" type=submit value="Add to cart" color="green" >
+          {% else %}
+            <button type=button disabled>Add to cart</button>
+          {% endif %}
+        </div>
+      </div>
+    </form>
+  {%endif%}
+  {% if k == 'Tomatoes' %}
+  {% if k in avilable%}
+    <form action="removecart" method="post">
+  {%else%}
+    <form action="cart" method="post">
+  {%endif%}
+      {%csrf_token%}
+  <div class="vegetable">
+    <img src="{% static 'images\tomato.jpg'%}">
+    <select name="veg">
+      <option value="Tomatoes">Tomatoes</option>
+    </select>
+    {%for g,b in result1.items %}
+      {% if g == k %}
+        <p>{{b}}per kg</p>
+      {% endif %}
+    {% endfor %}
+    <select id="quantity-tomato" name="value">
+      <option value="1">1kg</option>
+      <option value="2">2kg</option>
+      <option value="3">3kg</option>
+      <option value="4">4kg</option>
+      <option value="5">5kg</option>
+    </select>
+    <div class="add-to-cart">
+      {% if k in avilable%}
+        <input type=submit value="removecart" font-color:"green">
+      {%  elif  v >= 5 %}
+        <input class="add" type=submit value="Add to cart" color="green" >
+      {% else %}
+        <button type=button disabled>Add to cart</button>
+      {% endif %}
+    </div>
+  </div>
+</form>
+{%endif%}
+{% if k == 'Ladyfinger' %}
+  {% if k in avilable%}
+    <form action="removecart" method="post">
+  {%else%}
+    <form action="cart" method="post">
+  {%endif%}
+      {%csrf_token%}
+  <div class="vegetable">
+    <img src="{% static 'images\ladiesfinger.jpg'%}">
+    <select name="veg">
+      <option value="Ladyfinger">Ladyfinger</option>
+    </select>
+    {%for g,b in result1.items %}
+      {% if g == k %}
+        <p>{{b}}per kg</p>
+      {% endif %}
+    {% endfor %}
+    <select id="quantity-tomato" name="value">
+      <option value="1">1kg</option>
+      <option value="2">2kg</option>
+      <option value="3">3kg</option>
+      <option value="4">4kg</option>
+      <option value="5">5kg</option>
+    </select>
+    <div class="add-to-cart">
+      {% if k in avilable%}
+        <input type=submit value="removecart" font-color:"green">
+      {%  elif  v >= 5 %}
+        <input class="add" type=submit value="Add to cart" color="green" >
+      {% else %}
+        <button type=button disabled>Add to cart</button>
+      {% endif %}
+    </div>
+  </div>
+</form>
+{%endif%}
+{% if k == 'Cauliflower' %}
+  {% if k in avilable%}
+    <form action="removecart" method="post">
+  {%else%}
+    <form action="cart" method="post">
+  {%endif%}
+      {%csrf_token%}
+  <div class="vegetable">
+    <img src="{% static 'images\cauliflower.jpg'%}">
+    <select name="veg">
+      <option value="Cauliflower">Cauliflower</option>
+    </select>
+    {%for g,b in result1.items %}
+      {% if g == k %}
+        <p>{{b}}per kg</p>
+      {% endif %}
+    {% endfor %}
+    <select id="quantity-tomato" name="value">
+      <option value="1">1kg</option>
+      <option value="2">2kg</option>
+      <option value="3">3kg</option>
+      <option value="4">4kg</option>
+      <option value="5">5kg</option>
+    </select>
+    <div class="add-to-cart">
+      {% if k in avilable%}
+        <input type=submit value="removecart" font-color:"green">
+      {%  elif  v >= 5 %}
+        <input class="add" type=submit value="Add to cart" color="green" >
+      {% else %}
+        <button type=button disabled>Add to cart</button>
+      {% endif %}
+    </div>
+  </div>
+</form>
+{%endif%}
+{% if k == 'Ginger' %}
+  {% if k in avilable%}
+    <form action="removecart" method="post">
+  {%else%}
+    <form action="cart" method="post">
+  {%endif%}
+      {%csrf_token%}
+  <div class="vegetable">
+    <img src="{% static 'images\ginger.jpg'%}">
+    <select name="veg">
+      <option value="Ginger">Ginger</option>
+    </select>
+    {%for g,b in result1.items %}
+      {% if g == k %}
+        <p>{{b}}per kg</p>
+      {% endif %}
+    {% endfor %}
+    <select id="quantity-tomato" name="value">
+      <option value="1">1kg</option>
+      <option value="2">2kg</option>
+      <option value="3">3kg</option>
+      <option value="4">4kg</option>
+      <option value="5">5kg</option>
+    </select>
+    <div class="add-to-cart">
+      {% if k in avilable%}
+        <input type=submit value="removecart" font-color:"green">
+      {%  elif  v >= 5 %}
+        <input class="add" type=submit value="Add to cart" color="green" >
+      {% else %}
+        <button type=button disabled>Add to cart</button>
+      {% endif %}
+    </div>
+  </div>
+</form>
+{%endif%}
+{% if k == 'Cabbage' %}
+  {% if k in avilable%}
+    <form action="removecart" method="post">
+  {%else%}
+    <form action="cart" method="post">
+  {%endif%}
+      {%csrf_token%}
+  <div class="vegetable">
+    <img src="{% static 'images\cabbage.jpg'%}">
+    <select name="veg">
+      <option value="Cabbage">Cabbage</option>
+    </select>
+    {%for g,b in result1.items %}
+      {% if g == k %}
+        <p>{{b}}per kg</p>
+      {% endif %}
+    {% endfor %}
+    <select id="quantity-tomato" name="value">
+      <option value="1">1kg</option>
+      <option value="2">2kg</option>
+      <option value="3">3kg</option>
+      <option value="4">4kg</option>
+      <option value="5">5kg</option>
+    </select>
+    <div class="add-to-cart">
+      {% if k in avilable%}
+        <input type=submit value="removecart" font-color:"green">
+      {%  elif  v >= 5 %}
+        <input class="add" type=submit value="Add to cart" color="green" >
+      {% else %}
+        <button type=button disabled>Add to cart</button>
+      {% endif %}
+    </div>
+  </div>
+</form>
+{%endif%}
+{%endfor%}
+  
+
+  
+
+    </div>
+  </body>
+</html>
+      {% comment %} {% if k in avilable%}
+        <form action="removecart" method="post">
+      {%else%}
+        <form action="cart" method="post">
+      {%endif%}
+      {% if k == 'Tomatoes' %}
+        {% csrf_token %}
+      <div class="vegetable">
+        <img src="{% static 'images\tomato.jpg'%}" alt="Vegetable 2">
+        <select name="veg">
+          <option value="Tomatoes">Tomatoes</option>
+        </select>
+        {%for g,b in result1.items %}
+          {% if k == g %}
+            <p>{{b}}per kg</p>
+          {% endif %}
+        {% endfor %}
+        <select id="quantity-tomato" name="value">
+          <option value="1">1kg</option>
+          <option value="2">2kg</option>
+          <option value="3">3kg</option>
+          <option value="4">4kg</option>
+          <option value="5">5kg</option>
+        </select>
+        <div class="add-to-cart">
+        {% if k in avilable%}
+          <input type=submit value="removecart" font-color:"green">
+        {%  elif  v >= 5 %}
+          <input class="add" type=submit value="Add to cart" color="green" >
+        {% else %}
+          <button type=button disabled>Add to cart</button>
+        {% endif %}
+          
+        </div>
+      </div>
+      </form>
+      {% endif %}
+      <!-- Repeat the above vegetable div for other vegetables -->
+      {% if k == 'Onion' %}
+        {% if k in avilable%}
+          <form action="removecart" method="post">
+        {%else%}
+          <form action="cart" method="post">
+        {%endif%}
+        {% csrf_token %}
+      <div class="vegetable">
+        <img src="{%static 'images\onion.jpg'%}" alt="Vegetable 10">
+        <select name="veg">
+          <option value="Onion">Onion</option>
+        </select>
+        {%for g,b in result1.items %}
+          {% if k == g %}
+            <p>{{b}}per kg</p>
+          {% endif %}
+        {% endfor %}
+        <select id="quantity-tomato" name="value">
+          <option value="1">1kg</option>
+          <option value="2">2kg</option>
+          <option value="3">3kg</option>
+          <option value="4">4kg</option>
+          <option value="5">5kg</option>
+        </select>
+        <div class="add-to-cart">
+          {% if k in avilable%}
+            <input type=submit value="removecart" font-color:"green">
+          {%  elif  v >= 5 %}
+            <input class="add" type=submit value="Add to cart" color="green" >
+          {% else %}
+            <button type=button disabled>Add to cart</button>
+          {% endif %}
+        </div>
+      </div>
+      </form>
+      {%endif%}
+      {% if k in avilable%}
+        <form action="removecart" method="post">
+      {%else%}
+        <form action="cart" method="post">
+      {%endif%}
+      {% if k == 'Garlic' %}
+        {% csrf_token %}
+      <div class="vegetable">
+        <img src="{%static 'images\garlic.jpg'%}" alt="Vegetable 10">
+        <select name="veg">
+          <option value="Garlic">Garlic</option>
+        </select>
+        {%for g,b in result1.items %}
+          {% if k == g %}
+            <p>{{b}}per kg</p>
+          {% endif %}
+        {% endfor %}
+        <select id="quantity-tomato" name="value">
+          <option value="1">1kg</option>
+          <option value="2">2kg</option>
+          <option value="3">3kg</option>
+          <option value="4">4kg</option>
+          <option value="5">5kg</option>
+        </select>
+        <div class="add-to-cart">
+          {% if k in avilable%}
+            <input type=submit value="removecart" font-color:"green">
+          {%  elif  v >= 5 %}
+            <input class="add" type=submit value="Add to cart" color="green" >
+          {% else %}
+            <button type=button disabled>Add to cart</button>
+          {% endif %}
+        </form> 
+        </div>
+      </div>
+      {%endif%}
+      {% if k in avilable%}
+        <form action="removecart" method="post">
+      {%else%}
+        <form action="cart" method="post">
+      {%endif%}
+      {% if k == 'Potato' %}
+        <div class="vegetable">
+          <img src="{% static 'images\potato.jpg'%}">
+          <select name="veg">
+            <option value="Potato">Potato</option>
+          </select>
+          {%for g,b in result1.items %}
+            {% if g == "Potato"%}
+              <p>{{b}}per kg</p>
+            {% endif %}
+          {% endfor %}
+          <select id="quantity-tomato" name="value">
+            <option value="1">1kg</option>
+            <option value="2">2kg</option>
+            <option value="3">3kg</option>
+            <option value="4">4kg</option>
+            <option value="5">5kg</option>
+          </select>
+          <div class="add-to-cart">
+            {% if k in avilable%}
+              <input type=submit value="removecart" font-color:"green">
+            {%  elif  v >= 5 %}
+              <input class="add" type=submit value="Add to cart" color="green" >
+            {% else %}
+              <button type=button disabled>Add to cart</button>
+            {% endif %}
+          </div>
+        </div>
+      </form>
+      {% endif %}
+      {% if k == 'Cabbage' %}
+        {% if k in avilable%}
+          <form action="removecart" method="post">
+        {%else%}
+          <form action="cart" method="post">
+        {%endif%}
+          {% csrf_token %}
+      <div class="vegetable">
+        <img src="{% static 'images\cabbage.jpg'%}" alt="Vegetable 2">
+        <select name="veg">
+          <option value="Cabbage">Cabbage</option>
+        </select>
+        {%for g,b in result1.items %}
+          {% if k == g %}
+            <p>{{b}}per kg</p>
+          {% endif %}
+        {% endfor %}
+        <select id="quantity-tomato" name="value">
+          <option value="1">1kg</option>
+          <option value="2">2kg</option>
+          <option value="3">3kg</option>
+          <option value="4">4kg</option>
+          <option value="5">5kg</option>
+        </select>
+        <div class="add-to-cart">
+          {% if k in avilable%}
+            <input type=submit value="removecart" font-color:"green">
+          {%  elif  v >= 5 %}
+            <input class="add" type=submit value="Add to cart" color="green" >
+          {% else %}
+            <button type=button disabled>Add to cart</button>
+          {% endif %}
+        </div>
+      </div>
+      </form>
+      {% endif %}
+      <!-- Repeat the above vegetable div for other vegetables -->
+      {% if k == 'Cauliflower' %}
+        {% if k in avilable%}
+          <form action="removecart" method="post">
+        {%else%}
+          <form action="cart" method="post">
+        {%endif%}
+        {%csrf_token%}
+      <div class="vegetable">
+        <img src="{%static 'images\cauliflower.jpg'%}" alt="Vegetable 10">
+        <select name="veg">
+          <option value="Cauliflower">cauliflower</option>
+        </select>
+        {%for g,b in result1.items %}
+          {% if k == g %}
+            <p>{{b}}per kg</p>
+          {% endif %}
+        {% endfor %}
+        <select id="quantity-tomato" name="value">
+          <option value="1">1kg</option>
+          <option value="2">2kg</option>
+          <option value="3">3kg</option>
+          <option value="4">4kg</option>
+          <option value="5">5kg</option>
+        </select>
+        <div class="add-to-cart">
+          {% if k in avilable%}
+            <input type=submit value="removecart" font-color:"green">
+          {%  elif  v >= 5 %}
+            <input class="add" type=submit value="Add to cart" color="green" >
+          {% else %}
+            <button type=button disabled>Add to cart</button>
+          {% endif %}
+          
+        </div>
+      </div>
+      </form>
+      {%endif%}
+      {% if k in avilable%}
+        <form action="removecart" method="post">
+      {%else%}
+        <form action="cart" method="post">
+      {%endif%}
+      {% if k == 'Ladyfinger' %}
+        {% csrf_token %}
+      <div class="vegetable">
+        <img src="{%static 'images\ladiesfinger.jpg'%}" alt="Vegetable 10">
+        <select name="veg">
+          <option value="Ladyfinger">Ladyfinger</option>
+        </select>
+        {%for g,b in result1.items %}
+          {% if k == g %}
+            <p>{{b}}per kg</p>
+          {% endif %}
+        {% endfor %}
+        <select id="quantity-tomato" name="value">
+          <option value="1">1kg</option>
+          <option value="2">2kg</option>
+          <option value="3">3kg</option>
+          <option value="4">4kg</option>
+          <option value="5">5kg</option>
+        </select>
+        <div class="add-to-cart">
+          {% if k in avilable%}
+            <input type=submit value="removecart" font-color:"green">
+          {%  elif  v >= 5 %}
+            <input class="add" type=submit value="Add to cart" color="green" >
+          {% else %}
+            <button type=button disabled>Add to cart</button>
+          {% endif %}
+          
+        </div>
+      </div>
+      </form>
+      {%endif%}
+  
+      {% if k in avilable%}
+        <form action="removecart" method="post">
+      {%else%}
+        <form action="cart" method="post">
+      {%endif%}
+
+      {% if k == 'Capsicum' %}
+        {% csrf_token %}
+      <div class="vegetable">
+        <img src="{% static 'images\capsicum.jpg'%}" alt="Vegetable 2">
+        <select name="veg">
+          <option value="Capsicum">Capsicum</option>
+        </select>
+        {%for g,b in result1.items %}
+          {% if k == g %}
+            <p>{{b}}per kg</p>
+          {% endif %}
+        {% endfor %}
+        <select id="quantity-tomato" name="value">
+          <option value="1">1kg</option>
+          <option value="2">2kg</option>
+          <option value="3">3kg</option>
+          <option value="4">4kg</option>
+          <option value="5">5kg</option>
+        </select>
+        <div class="add-to-cart">
+          {% if k in avilable%}
+            <input type=submit value="removecart" font-color:"green">
+          {%  elif  v >= 5 %}
+            <input class="add" type=submit value="Add to cart" color="green" >
+          {% else %}
+            <button type=button disabled>Add to cart</button>
+          {% endif %}
+          
+        </div>
+      </div>
+      </form>
+      {% endif %}
+      {% if k in avilable%}
+        <form action="removecart" method="post">
+      {%else%}
+        <form action="cart" method="post">
+      {%endif%}
+
+      {% if k == 'Ginger' %}
+        {% csrf_token %}
+      <div class="vegetable">
+        <img src="{% static 'images\ginger.jpg'%}" alt="Vegetable 2">
+        <select name="veg">
+          <option value="Ginger">Ginger</option>
+        </select>
+        {%for g,b in result1.items %}
+          {% if k == g %}
+            <p>{{b}}per kg</p>
+          {% endif %}
+        {% endfor %}
+        <select id="quantity-tomato" name="value">
+          <option value="1">1kg</option>
+          <option value="2">2kg</option>
+          <option value="3">3kg</option>
+          <option value="4">4kg</option>
+          <option value="5">5kg</option>
+        </select>
+        <div class="add-to-cart">
+          {% if k in avilable%}
+            <input type=submit value="removecart" font-color:"green">
+          {%  elif  v >= 5 %}
+            <input class="add" type=submit value="Add to cart" color="green" >
+          {% else %}
+            <button type=button disabled>Add to cart</button>
+          {% endif %}
+          
+        </div>
+      </div>
+      </form>
+      {% endif %}
+      {% endfor%}
+    </div>
+</body>
+</html> {% endcomment %}

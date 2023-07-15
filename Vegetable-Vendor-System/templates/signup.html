@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+{%load static%}
+<html>
+<head>
+  <title>Signup Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      background-image: url("{% static 'images\\login.jpg' %}")
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: bold;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .form-group .error-message {
+      color: #ff0000;
+    }
+
+    .form-group .success-message {
+      color: #00ff00;
+    }
+
+    .form-group .btn-login {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      background-color: #4caf50;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .form-group .btn-login:hover {
+      background-color: #45a049;
+    }
+    .background{
+      background-color:lightgreen
+    }
+  </style>
+  <script>
+    function validateForm() {
+      var mobileNumber = document.getElementById("mobileNumber").value;
+      var password = document.getElementById("password").value;
+
+      // Validate mobile number
+      if (mobileNumber.length !== 10 || isNaN(mobileNumber)) {
+        alert("Please enter a valid 10-digit mobile number.");
+        return false;
+      }
+
+      // Validate password
+      var passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,}$/;
+      if (!passwordRegex.test(password)) {
+        alert("Please enter a valid password. It must be at least 8 characters long and include at least one digit, one capital letter, one small letter, and one special character.");
+        return false;
+      }
+
+      // If both mobile number and password are valid, allow signup
+      alert("Signup successful!");
+      return true;
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h2>Signup</h2>
+    <form class="background" onsubmit="return validateForm()" action="signup" method="post">
+    {% csrf_token %}
+      <div class="form-group">
+          <label for="mobileNumber">Mobile Number:</label>
+          <input type="text" id="mobileNumber" name="mobilenumber" maxlength="10" required>
+      </div>
+      <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" required>
+      </div>
+      <div class="form-group">
+          <input type="submit" value="Signup">
+      </div>
+  </form>
+</body>
+</html>

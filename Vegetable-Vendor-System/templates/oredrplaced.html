@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{%load static%}
+<html>
+<head>
+  <title>Vegetable Order</title>
+</head>
+<style>
+  body{
+    background-image: url("{% static 'images\\placeorder.jpg' %}")
+  }
+</style>
+<body>
+  <h1>Vegetable Order Details</h1>
+  <form action="ordered" method="post">
+    {% csrf_token %}
+  <table>
+    <tr>
+      <th>Vegetable</th>
+      <th>Quantity</th>
+      <th>Total Amount</th>
+    </tr>
+  {% for i,j in addtocart.items %}
+    <tr>
+      <td>{{i}}</td>
+      <td>{{j}}kg</td>
+        {% for k,n in addtocost.items %}
+            {% if k == i %}
+                <td>{{n}}</td>
+            {% endif %}
+        {%endfor%}
+    </tr>
+  </table>
+  {% endfor %}
+  <p> Total cost{{totalcost}}<p>
+  <label for="address">address:</label>
+  <input type="text" name="address"><br><br>
+  <input type="submit" value="placeorder">
+</form>
+</body>
+</html>

@@ -1,0 +1,93 @@
+{% comment %} <!DOCTYPE html>
+<html>
+    <head>
+        <title>Ranjith vegetable stores</title>
+        <style>
+            body {
+                font-family:Arial,sans-serif;
+                margin:0
+                padding: 20px;
+            }
+            h1{
+                text-align: center
+            }
+            .product{
+                text-align:center;
+                margin:20px;
+                padding:20px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                width: 300px
+            }
+            .product img{
+                max-width:100%;
+                height:auto;
+                margin-buttom:10px;
+            }
+            .product select{
+                width:100%;
+                padding: 5px;
+                margin-buttom:10px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Ranjith vegetable store</h1>
+        <form class="product" method="post">
+            <img src="tomato.jpg" alt="tomato">
+            <p>20 per kg</p>
+            <label for="quantity-tomato">Quantity(kg)</label>
+            <select id="quantity-tomato" name="value">
+                <option value="1">1kg</option>
+                <option value="2">2kg</option>
+                <option value="3">3kg</option>
+                <option value="4">4kg</option>
+                <option value="5">5kg</option>
+            </select>
+            <input type="submit">add to cart</input>
+            <input type="submit">buy now</input>
+        </form>
+    </body>
+</html> {% endcomment %}
+{%load static%}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Vegetable Order</title>
+</head>
+<style>
+    body{
+        background-image: url("{% static 'images\\cart.jpg' %}")
+    }
+</style>
+<body>
+  <h1>Vegetable Order Details</h1>
+  {%if length > 0 %}
+    <form action="placeorder">
+    {% for i,j in addtocart.items %}
+    <table>
+        <tr>
+            <th>Vegetable</th>
+            <th>Quantity</th>
+            <th>Total Amount</th>
+        </tr>
+        <tr>
+            <td>{{i}}</td>
+            <td>{{j}}kg</td>
+            {% for k,n in addtocost.items %}
+                {% if k == i %}
+                    <td>{{n}}</td>
+                {% endif %}
+            {%endfor%}
+        </tr>
+    </table>
+    {% endfor %}
+  
+    <input type="submit" value="placeorder">
+    </form>
+    {%endif%}
+    <a href="product">ADD ITEM</a>
+</body>
+</html>
+
+

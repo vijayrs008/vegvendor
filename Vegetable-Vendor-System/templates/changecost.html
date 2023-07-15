@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <body>
+            <h1>Change Price</h1>
+            <form action="changecost" method="post">
+                {% csrf_token %}
+                <label>Vegetable:</label>
+                <input type="text" name="vegetable" placeholder="Enter the vegetable ">
+                <br>
+                <label>Price:</label>
+                <input type="text" name="cost" placeholder="Enter the price">
+                <input type=submit value="change">
+            </form>
+        </body>
+    </head>
+</html>
+            

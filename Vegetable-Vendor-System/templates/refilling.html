@@ -1,0 +1,21 @@
+{%load static%}
+<html>
+    <head>
+        <style>
+            body{
+                background-image: url("{% static 'images\\check.png' %}");
+                background-size:100%;
+
+            }
+        </style>
+        <body>
+            <h1>check the available quantity of the vegetable</h1>
+            <form action="refilled" method="post">
+                {% csrf_token %}
+                <label>vegetable</label>
+                <input  type=text name="vegetable" placeholder="enter the vegetable">
+                <input type=submit value="check">
+            </form>
+        </body>
+    </head>
+<html>
